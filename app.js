@@ -18,15 +18,62 @@
 
 const express = require('express');
 const app = express();
-
+/*
 app.get('/', (req, res) => {
   res.status(200).send('Hello, world!');
 });
-
+*/
 // Start the server
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
   console.log('Press Ctrl+C to quit.');
 });
+
+angular
+  .module('skinkApp', [
+    'ngMaterial',
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    'ngRoute',
+    'ngSanitize',
+    'ngTouch',
+    'firebase',
+    'angularUtils.directives.dirPagination'
+    
+  ])
+  .config(function ($routeProvider) {
+    $routeProvider
+      
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl',
+        controllerAs: 'about'
+      })
+      .when('/inventario', {
+        templateUrl: 'views/inventario.html',
+        controller: 'InventarioCtrl',
+        controllerAs: 'inventario'
+      })
+      .when('/clientes', {
+        templateUrl: 'views/clientes.html',
+        controller: 'ClientesCtrl',
+        controllerAs: 'clientes'
+      })
+      .when('/visitas', {
+        templateUrl: 'views/visitas.html',
+        controller: 'VisitasCtrl',
+        controllerAs: 'visitas'
+      })
+      .when('/pedidos', {
+        templateUrl: 'views/pedidos.html',
+        controller: 'PedidosCtrl',
+        controllerAs: 'pedidos'
+      })
+      .otherwise({
+        redirectTo: '/visitas'
+      });
+  });
+
 // [END app]
